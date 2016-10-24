@@ -28,6 +28,20 @@ var albumPicasso = {
      ]
  };
  
+ var albumDogs = {
+     title: 'Woof',
+     artist: 'My Dog',
+     label: 'Purina',
+     year: '2007',
+     albumArtUrl: 'assets/images/album_covers/10.png',
+     songs: [
+         { title: 'Fire Hydrant', duration: ':30'},
+         { title: 'Rawhide', duration: '1:00'},
+         { title: 'Squirrel', duration: '3:45'},
+         { title: 'Springer Spaniel', duration: '5:00'}
+    ]
+ }
+ 
  var createSongRow = function(songNumber, songName, songLength) {
     var template =
         '<tr class="album-view-song-item">'
@@ -43,7 +57,6 @@ var albumPicasso = {
      var albumTitle = document.getElementsByClassName('album-view-title')[0];
      var albumArtist = document.getElementsByClassName('album-view-artist')[0];
      var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
      var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
      
      albumTitle.firstChild.nodeValue = album.title;
@@ -56,6 +69,14 @@ var albumPicasso = {
           }
 };
 
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albums = [albumPicasso, albumMarconi, albumDogs];
+var myIndex = 1;
+
 window.onload = function(){
     setCurrentAlbum(albumPicasso);
-};
+};  
+albumImage.addEventListener('click', function(){ 
+    setCurrentAlbum(albums[myIndex]);
+    myIndex = (myIndex + 1)%(albums.length);
+});
